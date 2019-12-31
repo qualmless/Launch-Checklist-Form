@@ -1,39 +1,46 @@
 // Write your JavaScript code here!
 window.addEventListener("load", function() {
    let form = document.querySelector("form");
-   console.log("*********");
+   // console.log("*********");
 
 
-   form.addEventListener("submit", function() {
-      let pilotName = document.getElementById("pilotName");
-      let copilotName = document.getElementById("copilotName");
-      let fuelLevel = document.getElementById("fuelLevel");
-      let cargoMass = document.getElementById("cargoMass");
-      console.log("*****x****");
-      console.log(pilotName);
-      console.log(fuelLevel);
+   form.addEventListener("submit", function(event) {
+      let pilotName = document.querySelector("input[name=pilotName]");
+      let copilotName = document.querySelector("input[name=copilotName]");
+      let fuelLevel = document.querySelector("input[name=fuelLevel]");
+      let cargoMass = document.querySelector("input[name=cargoMass]");
 
-
-
-      // if (pilotName.value === "" || copilotName.value === "" || fuelLevel.value === "" ||cargoMass.value === "") {
-      //    alert("All fields are required!");
-      //    event.preventDefault();
-      // }
+      if (pilotName.value === "" || copilotName.value === "" || fuelLevel.value === "" ||cargoMass.value === "") {
+         alert("All fields are required!");
+         event.preventDefault();
+      }
       
-      // else if (pilotName.value.type !== "string" || copilotName.value.type !== "string") {
-      //    alert("Pilot Name and Co-Pilot Name should be strings!");
-      //    alert(pilotName.value)
-      //    event.preventDefault();
-      // }
+      if ( (isNaN(fuelLevel)) || (isNaN(cargoMass)) ) {
+         alert("fuel and cargo amounts should be numbers!");
+         event.preventDefault();
+      }
 
-      // if ( (isNaN(fuelLevel)) || (isNaN(cargoMass)) ) {
-      //    alert("fuel and cargo amounts should be numbers!");
-      //    // console.log(fuelLevel.value)
-      //    // console.log(fuelLevel)
-      //    event.preventDefault();
-      // }
+      if ( (!isNaN(pilotName.value)) || (!isNaN(copilotName.value)) ) {
+         alert("Pilot Name and Co-Pilot Name should be strings!");
+         event.preventDefault();
+      }
 
-
+      if((fuelLevel.value < 10000) && (cargoMass.value > 10000)){
+         alert("Not enough fuel for journey.");
+         
+         const div = document.getElementById("launchStatusCheck");
+            div.innerHTML = `
+            <h2 id="launchStatus" style="color:red;">Shuttle Not Ready for Launch</h2>
+            <div  id="faultyItems" style="visibility: visible">
+                <ol>
+                    <li id="pilotStatus">Pilot ${pilotName.value} is ready for launch.</li>
+                    <li id="copilotStatus">Co-Pilot ${coPilotName.value} is ready for launch.</li>
+                    <li id="fuelStatus">Fuel is too low for launch.</li>
+                    <li id="cargoStatus">Cargo mass is too heavy for launch.</li>
+                </ol>
+                `
+                event.preventDefault();
+         } //End of 1st condition of launch
    });
 
    // form.addEventListener("submit", function(event){
