@@ -19,6 +19,7 @@ window.addEventListener("load", function() {
 });
    let form = document.querySelector("form");
    form.addEventListener("submit", function(event) {
+      event.preventDefault();
       let pilotName = document.querySelector("input[name=pilotName]");
       let copilotName = document.querySelector("input[name=copilotName]");
       let fuelLevel = document.querySelector("input[name=fuelLevel]");
@@ -48,7 +49,7 @@ window.addEventListener("load", function() {
             <div  id="faultyItems" style="visibility: visible">
                 <ol id="launchList">
                     <li id="pilotStatus">Pilot ${pilotName.value} is ready for launch.</li>
-                    <li id="copilotStatus">Co-Pilot ${coPilotName.value} is ready for launch.</li>
+                    <li id="copilotStatus">Co-Pilot ${copilotName.value} is ready for launch.</li>
                     <li id="fuelStatus">Fuel is too low for launch.</li>
                     <li id="cargoStatus">Cargo mass is too heavy for launch.</li>
                 </ol>
@@ -56,7 +57,7 @@ window.addEventListener("load", function() {
                 `
                 event.preventDefault();
          } //End of 1st condition of launch
-      if((fuelLevel.value > 10000) && (cargoMass.value < 10000)){
+      else if((fuelLevel.value > 10000) && (cargoMass.value < 10000)){
          alert("Shuttle Is Ready to Launch.");
          // launchReady = true;
                
@@ -66,7 +67,7 @@ window.addEventListener("load", function() {
             <div id="faultyItems" style="visibility: visible">
                <ol id="launchList">
                   <li id="pilotStatus">Pilot ${pilotName.value} is ready for launch.</li>
-                  <li id="copilotStatus">Co-Pilot ${coPilotName.value} is ready for launch.</li>
+                  <li id="copilotStatus">Co-Pilot ${copilotName.value} is ready for launch.</li>
                   <li id="fuelStatus">Fuel is sufficient for launch.</li>
                   <li id="cargoStatus">Cargo mass is sufficient for launch.</li>
                </ol>
@@ -75,7 +76,7 @@ window.addEventListener("load", function() {
          }//End of 2nd condition
 
          
-      if((fuelLevel.value > 10000) && (cargoMass.value > 10000)){
+      else if((fuelLevel.value > 10000) && (cargoMass.value > 10000)){
          alert("Cargo too heavy to launch.");
          const div = document.getElementById("launchStatusCheck");
             div.innerHTML = `
@@ -83,7 +84,7 @@ window.addEventListener("load", function() {
             <div id="faultyItems" style="visibility: visible">
                <ol id="launchList">
                   <li id="pilotStatus">Pilot ${pilotName.value} is ready for launch.</li>
-                  <li id="copilotStatus">Co-Pilot ${coPilotName.value} is ready for launch.</li>
+                  <li id="copilotStatus">Co-Pilot ${copilotName.value} is ready for launch.</li>
                   <li id="fuelStatus">Fuel is sufficient for launch.</li>
                   <li id="cargoStatus">Cargo mass too heavy for launch.</li>
                </ol>
@@ -92,7 +93,7 @@ window.addEventListener("load", function() {
           }//End of 3rd condition
 
 
-      if((fuelLevel.value < 10000) && (cargoMass.value < 10000)){
+      else if((fuelLevel.value < 10000) && (cargoMass.value < 10000)){
          alert("Shuttle not ready to launch.");
             const div = document.getElementById("launchStatusCheck");
                div.innerHTML = `
@@ -100,7 +101,7 @@ window.addEventListener("load", function() {
                   <div id="faultyItems" style="visibility: visible">
                      <ol id="launchList">
                         <li id="pilotStatus">Pilot ${pilotName.value} is ready for launch.</li>
-                        <li id="copilotStatus">Co-Pilot ${coPilotName.value} is ready for launch.</li>
+                        <li id="copilotStatus">Co-Pilot ${copilotName.value} is ready for launch.</li>
                         <li id="fuelStatus">Fuel is too low for launch.</li>
                         <li id="cargoStatus">Cargo mass is sufficient for launch.</li>
                      </ol>
